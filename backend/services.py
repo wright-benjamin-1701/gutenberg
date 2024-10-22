@@ -9,10 +9,12 @@ from cr import try_create_asset, create_downloads_data
 def get_most_recent_download_timestamp(session):
 
     data = (
-        session.query(SiteContent).order_by(SiteContent.retrieved.desc()).limit(1).one()
+        session.query(SiteContent).order_by(SiteContent.retrieved.desc()).limit(1).one_or_none()
     )
-
-    return data.retrieved
+    if data!=None:
+        return data.retrieved
+    else:
+        return 0
 
 
 def translate_fetched_data_to_database(session, retrieved: float, dfs):
