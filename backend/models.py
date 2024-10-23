@@ -20,7 +20,7 @@ Base = declarative_base()
 
 
 class Asset(Base):
-    __tablename__ = "asset"
+    __tablename__ = "assets"
     url = Column("url", String(), index=True, primary_key=True)
     name = Column("name", String())
 
