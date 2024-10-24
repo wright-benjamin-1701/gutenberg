@@ -4,6 +4,7 @@ import datetime
 import pandas as pd
 import plotly.express as px
 import chart_studio.plotly as py
+import utils
 
 def get_key_timestamps(site_content_list):
     keyframe_map = {}
@@ -21,7 +22,7 @@ def get_key_timestamps(site_content_list):
 
 def retrieved_for_display(row):
     retrieved = row['retrieved']
-    return str(datetime.datetime.fromtimestamp(retrieved).date())
+    return str(datetime.datetime.fromtimestamp(retrieved - utils.SECONDS_PER_DAY).date())
 
 def report():
 
