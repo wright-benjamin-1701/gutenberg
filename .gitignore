@@ -399,4 +399,4 @@ FodyWeavers.xsd
 
 # Custom
 *.ipynb
-*.db
+cron-job.sh
