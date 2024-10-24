@@ -2,9 +2,7 @@ from models import Asset, DownloadsData, SiteContent
 
 from sqlalchemy import select
 
-
 from cr import try_create_asset, create_downloads_data
-
 
 def get_most_recent_download_timestamp(session):
 
@@ -15,7 +13,6 @@ def get_most_recent_download_timestamp(session):
         return data.retrieved
     else:
         return 0
-
 
 def translate_fetched_data_to_database(session, retrieved: float, dfs):
 

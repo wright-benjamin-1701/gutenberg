@@ -8,13 +8,10 @@ import cr
 
 from models import Session, Asset, DownloadsData, SiteContent
 
-
 def now():
     return datetime.datetime.now(datetime.timezone.utc).timestamp()
 
-
 SECONDS_PER_DAY = 86400
-
 
 def get_site_content():
     base_url = "https://www.gutenberg.org/browse/scores/top"
@@ -24,7 +21,6 @@ def get_site_content():
     content = score_res.text
 
     return retrieved, base_url, content
-
 
 def get_dfs(content, retrieved):
 
@@ -63,7 +59,6 @@ def get_dfs(content, retrieved):
         dfs[headings[i]] = pd.DataFrame(data_list, columns=["asset", "name", "count"])
 
     return dfs
-
 
 def update():
 
