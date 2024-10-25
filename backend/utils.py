@@ -66,7 +66,7 @@ def update():
 
     most_recent_retrieved = services.get_most_recent_download_timestamp(session)
 
-    if now() - most_recent_retrieved >= SECONDS_PER_DAY/2 - 1800:
+    if now() - most_recent_retrieved >= SECONDS_PER_DAY/2:
 
         retrieved, url, content = get_site_content()
 
