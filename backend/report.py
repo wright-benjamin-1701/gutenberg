@@ -28,14 +28,14 @@ def report():
 
     session = models.Session()
 
-    K = 14
+    K = 20
 
     keyframes = get_key_timestamps(session.query(models.SiteContent).order_by(models.SiteContent.retrieved.desc()).limit(K).all())
 
     df = pd.read_sql(sql='SELECT * FROM downloadsdata',con=models.database_url, index_col=None)
     df = df[df['retrieved'].isin(keyframes)]
     df['retrieved_label'] = df.apply(retrieved_for_display,axis=1)
-
+    df = df.drop_duplicates(subset=['retrieved_label','asset','bucket'])
 
     for bucket,type in [('Top 100 EBooks yesterday','E-Book'),('Top 100 Authors yesterday','Author')]:
         report_df = df[df['bucket'] == bucket].reset_index()
@@ -55,5 +55,5 @@ def report():
                     title=title
                     )
         fig.update_xaxes(showticklabels=True, dtick='D1')
-        fig.show()
-        py.plot(fig, filename=f'project-gutenberg-most-recent-{type}', auto_open=True)
+        #fig.show()
+        py.plot(fig, filename=f'project-gutenberg-most-recent-{type}', auto_open=False)
